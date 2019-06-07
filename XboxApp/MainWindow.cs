@@ -6,7 +6,7 @@ namespace XboxApp
 {
     class MainWindow : Window
     {
-        [UI] private WebView webkitview = null;
+        //[UI] private WebView webkitview = null;
         [UI] private Button refreshButton = null;
 
         public MainWindow() : this(new Builder("MainWindow.glade")) { }
@@ -15,18 +15,20 @@ namespace XboxApp
         {
             builder.Autoconnect(this);
 
-            ConfigureMainWindow(app);
+            ConfigureMainWindow();
             ConfigureWebView();
             ConfigureEventHandlers();
         }
 
-        private void ConfigureWebView() {
-            this.webkitview.load_uri("http://openxbox.org");
+        private void ConfigureWebView()
+        {
+            // this.webkitview.LoadUri("http://openxbox.org");
         }
 
-        private void ConfigureMainWindow(Application app) {
-            this.set_default_size (900, 640);
-            this.set_application (app);
+        private void ConfigureMainWindow()
+        {
+            this.SetDefaultSize(900, 640);
+            // this.SetApplication(app);
         }
 
         private void ConfigureEventHandlers() {
@@ -37,7 +39,7 @@ namespace XboxApp
         private void RefreshButton_Clicked(object sender, EventArgs a)
         {
             LoginWindow login = new LoginWindow();
-            login.show_all();
+            login.ShowAll();
         }
 
         private void Window_DeleteEvent(object sender, DeleteEventArgs a)

@@ -6,7 +6,7 @@ namespace XboxApp
 {
     class LoginWindow : Window
     {
-        [UI] private WebView webkitview = null;
+        // [UI] private WebView webkitview = null;
 
         public LoginWindow() : this(new Builder("LoginWindow.glade")) { }
 
@@ -14,21 +14,28 @@ namespace XboxApp
         {
             builder.Autoconnect(this);
 
-            ConfigureLoginWindow(app);
+            ConfigureLoginWindow();
             ConfigureEventHandlers();
         }
 
-        private void ConfigureLoginWindow(Application app) {
-            this.set_default_size (900, 640);
+        private void ConfigureLoginWindow()
+        {
+            this.SetDefaultSize(900, 640);
         }
 
-        private void ConfigureEventHandlers() {
+        private void ConfigureEventHandlers()
+        {
             DeleteEvent += Window_DeleteEvent;
         }
 
         private void Window_DeleteEvent(object sender, DeleteEventArgs a)
         {
             Application.Quit();
+        }
+
+        public void OnLoginShow(object sender, EventArgs a)
+        {
+            Console.WriteLine("OnLoginShow was called!");
         }
     }
 }
