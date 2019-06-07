@@ -6,8 +6,13 @@ namespace XboxApp
 {
     class MainWindow : Window
     {
-        //[UI] private WebView webkitview = null;
+        [UI] private Button settingsButton = null;
         [UI] private Button refreshButton = null;
+
+        [UI] private Gtk.Paned menuPane = null;
+        [UI] private Gtk.Fixed content = null;
+
+        private LoginFrame loginFrame = null;
 
         public MainWindow() : this(new Builder("MainWindow.glade")) { }
 
@@ -15,20 +20,16 @@ namespace XboxApp
         {
             builder.Autoconnect(this);
 
-            ConfigureMainWindow();
-            ConfigureWebView();
-            ConfigureEventHandlers();
-        }
+            loginFrame = new LoginFrame();
 
-        private void ConfigureWebView()
-        {
-            // this.webkitview.LoadUri("http://openxbox.org");
+            ConfigureMainWindow();
+            ConfigureEventHandlers();
         }
 
         private void ConfigureMainWindow()
         {
             this.SetDefaultSize(900, 640);
-            // this.SetApplication(app);
+            content.Add(loginFrame);
         }
 
         private void ConfigureEventHandlers() {
@@ -38,8 +39,7 @@ namespace XboxApp
 
         private void RefreshButton_Clicked(object sender, EventArgs a)
         {
-            LoginWindow login = new LoginWindow();
-            login.ShowAll();
+            Console.WriteLine("RefreshButton clicked");
         }
 
         private void Window_DeleteEvent(object sender, DeleteEventArgs a)
