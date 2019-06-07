@@ -6,10 +6,8 @@ namespace XboxApp
 {
     class MainWindow : Window
     {
-        [UI] private Label _label1 = null;
-        [UI] private Button _button1 = null;
-
-        private int _counter;
+        [UI] private WebView webkitview = null;
+        [UI] private Button refreshButton = null;
 
         public MainWindow() : this(new Builder("MainWindow.glade")) { }
 
@@ -17,19 +15,34 @@ namespace XboxApp
         {
             builder.Autoconnect(this);
 
+            ConfigureMainWindow(app);
+            ConfigureWebView();
+            ConfigureEventHandlers();
+        }
+
+        private void ConfigureWebView() {
+            this.webkitview.load_uri("http://openxbox.org");
+        }
+
+        private void ConfigureMainWindow(Application app) {
+            this.set_default_size (900, 640);
+            this.set_application (app);
+        }
+
+        private void ConfigureEventHandlers() {
             DeleteEvent += Window_DeleteEvent;
-            _button1.Clicked += Button1_Clicked;
+            this.refreshButton.Clicked += RefreshButton_Clicked;
+        }
+
+        private void RefreshButton_Clicked(object sender, EventArgs a)
+        {
+            LoginWindow login = new LoginWindow();
+            login.show_all();
         }
 
         private void Window_DeleteEvent(object sender, DeleteEventArgs a)
         {
             Application.Quit();
-        }
-
-        private void Button1_Clicked(object sender, EventArgs a)
-        {
-            _counter++;
-            _label1.Text = "Hello World! This button has been clicked " + _counter + " time(s).";
         }
     }
 }
