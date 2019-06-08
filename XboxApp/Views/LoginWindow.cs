@@ -1,12 +1,10 @@
 using System;
-using System.Windows.Input;
+using System.Threading.Tasks;
+using System.ComponentModel;
 using Gtk;
 using UI = Gtk.Builder.ObjectAttribute;
 
-using XboxWebApi.Authentication;
-using System.Threading.Tasks;
 using XboxApp.ViewModels;
-using System.ComponentModel;
 
 namespace XboxApp.Views
 {

@@ -1,7 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Gtk;
-using UI = Gtk.Builder.ObjectAttribute;
 
 using XboxApp.MVVM;
 
