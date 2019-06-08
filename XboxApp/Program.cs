@@ -13,7 +13,7 @@ namespace XboxApp
             var app = new Application("org.OpenXbox.XboxApp", GLib.ApplicationFlags.None);
             app.Register(GLib.Cancellable.Current);
 
-            var win = new MainWindow();
+            var win = new Views.MainWindow();
             app.AddWindow(win);
 
             win.Show();
